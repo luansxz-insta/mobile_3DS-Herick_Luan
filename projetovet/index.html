@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4eee4">
+  <meta name="description" content="Encontre veterinários e clínicas veterinárias com o BuscaVet.">
+  <title>BuscaVet | Encontre veterinários</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#encontrar" aria-label="BuscaVet, início">
+      <img class="brand-logo" src="./imagens/Logo%20BuscaVet%20com%20C%C3%A3o%20e%20Gato.png" alt="Logo BuscaVet" />
+      <span class="brand-copy"><span class="brand-name">Busca<span>Vet</span></span><span class="brand-tagline">Encontre veterinários por perto</span></span>
+    </a>
+    <nav class="main-nav" aria-label="Navegação principal">
+      <button class="nav-button active" type="button" data-view="encontrar" aria-current="page">Encontrar</button>
+      <button class="nav-button" type="button" data-view="especialidades">Especialidades</button>
+      <button class="nav-button" type="button" data-view="atendimento">Atendimento</button>
+      <button class="nav-button" type="button" data-view="planos">Planos</button>
+      <button class="nav-button" type="button" data-view="avaliacoes">Avaliações</button>
+      <button class="nav-button" type="button" data-view="suporte">Suporte</button>
+      <button class="nav-button emergency-nav" type="button" data-view="emergencia">Emergência</button>
+      <button class="nav-button" type="button" data-view="veterinario">Veterinário</button>
+    </nav>
+    <div class="account-area">
+      <button class="button button-outline" id="tutor-registration-open" type="button">Cadastrar tutor</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="view active" id="view-encontrar" aria-labelledby="find-title">
+      <div class="page-intro">
+        <div>
+          <p class="eyebrow">Cuidado veterinário no Brasil</p>
+          <h1 id="find-title">Encontre cuidado para quem faz parte da família.</h1>
+          <p>Confira clínicas de Curitiba ou pesquise outras opções no Google Maps.</p>
+        </div>
+        <span class="example-badge">Clínicas cadastradas em Curitiba</span>
+      </div>
+
+      <section class="ad-carousel" id="ad-carousel" aria-label="Anúncios e destaques BuscaVet">
+        <div class="ad-slides" aria-live="off">
+          <div class="ad-slides-track" id="ad-slides-track">
+            <article class="ad-slide" data-ad-slide>
+              <div class="ad-slide-copy">
+                <span class="ad-label">Destaque BuscaVet</span>
+                <h2>Encontre clínicas veterinárias perto de você</h2>
+                <p>Pesquise por região e veja opções no mapa.</p>
+              </div>
+              <a class="button ad-action" href="#search-form">Buscar clínicas <span aria-hidden="true">›</span></a>
+            </article>
+            <article class="ad-slide" data-ad-slide aria-hidden="true" inert>
+              <div class="ad-slide-copy">
+                <span class="ad-label">Precisa de ajuda?</span>
+                <h2>Conte o que está acontecendo com seu pet</h2>
+                <p>Preencha o cadastro SOS para continuar pelo WhatsApp.</p>
+              </div>
+              <button class="button ad-action" type="button" data-ad-action="sos">Abrir SOS <span aria-hidden="true">›</span></button>
+            </article>
+            <article class="ad-slide" data-ad-slide aria-hidden="true" inert>
+              <div class="ad-slide-copy">
+                <span class="ad-label">Planos BuscaVet</span>
+                <h2>Conheça as opções de cuidado</h2>
+                <p>Confira os planos e escolha o que combina com você.</p>
+              </div>
+              <button class="button ad-action" type="button" data-view="planos">Ver planos <span aria-hidden="true">›</span></button>
+            </article>
+          </div>
+        </div>
+        <button class="ad-control ad-arrow" id="ad-previous" type="button" aria-label="Anúncio anterior">‹</button>
+        <button class="ad-control ad-arrow" id="ad-next" type="button" aria-label="Próximo anúncio">›</button>
+        <div class="ad-carousel-controls">
+          <button class="ad-control ad-pause" id="ad-pause" type="button" aria-label="Pausar anúncios">Pausar</button>
+          <div class="ad-dots" aria-label="Escolher anúncio">
+            <button class="ad-dot" type="button" aria-label="Anúncio 1" aria-current="true"></button>
+            <button class="ad-dot" type="button" aria-label="Anúncio 2" aria-current="false"></button>
+            <button class="ad-dot" type="button" aria-label="Anúncio 3" aria-current="false"></button>
+          </div>
+        </div>
+      </section>
+
+      <div class="container-botao-alerta">
+        <button class="btn-emergencia-pulsante" id="sos-open-registration" type="button" aria-label="Preencher cadastro SOS e pedir ajuda pelo WhatsApp">
+          <span class="sos-mark" aria-hidden="true">SOS</span>
+          <span class="sos-copy">
+            <strong>EMERGÊNCIA — PEDIR AJUDA</strong>
+            <span>Acesse o SOS veterinário.</span>
+          </span>
+          <span class="sos-arrow" aria-hidden="true">›</span>
+        </button>
+      </div>
+
+      <form class="search-panel" id="search-form" role="search">
+        <div class="field">
+          <label for="location-search">Filtrar clínicas ou buscar outra região</label>
+          <input id="location-search" name="location" type="search" placeholder="Ex.: Curitiba, PR" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="specialty-filter">Especialidade no Google Maps</label>
+          <select id="specialty-filter" name="specialty"></select>
+        </div>
+        <button class="button button-outline" id="reset-search" type="button">Ver clínicas de Curitiba</button>
+        <button class="button button-primary" type="submit">Buscar</button>
+      </form>
+
+      <div class="map-layout">
+        <section class="results-panel" aria-labelledby="results-title">
+          <div class="section-bar">
+            <h2 id="results-title">Clínicas cadastradas</h2>
+            <span id="result-count" aria-live="polite"></span>
+          </div>
+          <div class="clinic-list" id="clinic-list" aria-live="polite"></div>
+        </section>
+
+        <section class="map-panel" aria-label="Clínicas veterinárias no Google Maps">
+          <div class="map-surface" id="map-surface" role="region" aria-label="Mapa de clínicas veterinárias em Curitiba">
+            <iframe
+              class="google-map-embed"
+              id="google-map-embed"
+              src="https://www.google.com/maps?q=cl%C3%ADnicas%20veterin%C3%A1rias%20Curitiba%2C%20PR&amp;output=embed"
+              title="Busca de clínicas veterinárias em Curitiba no Google Maps"
+              width="600"
+              height="450"
+              style="border:0;"
+              allowfullscreen
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <a class="map-open-link" id="map-open-link" href="https://www.google.com/maps/search/?api=1&amp;query=cl%C3%ADnicas%20veterin%C3%A1rias%20Curitiba%2C%20PR" target="_blank" rel="noopener noreferrer">Abrir busca no Google Maps</a>
+            <span class="map-disclaimer">Endereços da lista: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>. Confirme dados e atendimento.</span>
+          </div>
+        </section>
+      </div>
+      <p class="page-note">Em caso de urgência, procure um hospital veterinário da sua região. Confirme sempre a formação e a disponibilidade do profissional.</p>
+    </section>
+
+    <section class="view" id="view-especialidades" aria-labelledby="specialties-title" hidden>
+      <div class="page-intro compact-intro">
+        <div><p class="eyebrow">Áreas de cuidado</p><h1 id="specialties-title">Especialidades e serviços</h1><p>Escolha uma opção para pesquisar clínicas no Google Maps.</p></div>
+      </div>
+      <div class="specialty-grid" id="specialty-grid"></div>
+      <p class="page-note">Lista informativa e ilustrativa. Os títulos e áreas reconhecidos podem variar; confirme a qualificação do profissional junto ao CRMV da sua região.</p>
+    </section>
+
+    <section class="view" id="view-atendimento" aria-labelledby="appointment-title" hidden>
+      <div class="page-intro compact-intro"><div><p class="eyebrow">Vamos combinar</p><h1 id="appointment-title">Peça um atendimento</h1><p>Preencha os dados para simular uma solicitação.</p></div></div>
+      <div class="content-panel">
+        <form class="form-grid" id="appointment-form">
+          <div class="field"><label for="pet-name">Nome do pet</label><input id="pet-name" name="pet" required placeholder="Ex.: Mel"></div>
+          <div class="field"><label for="pet-species">Espécie</label><select id="pet-species" name="species" required><option value="">Selecione</option><option>Cão</option><option>Gato</option><option>Ave</option><option>Coelho</option><option>Outro</option></select></div>
+          <div class="field"><label for="appointment-specialty">Especialidade ou serviço</label><select id="appointment-specialty" name="specialty" required></select></div>
+          <div class="field"><label for="appointment-city">Cidade / estado</label><input id="appointment-city" name="city" required placeholder="Ex.: Curitiba, PR"></div>
+          <div class="field"><label for="appointment-date">Data preferida</label><input id="appointment-date" name="date" type="date" required></div>
+          <div class="field"><label for="appointment-contact">Telefone ou e-mail</label><input id="appointment-contact" name="contact" required placeholder="Como podemos retornar?"></div>
+          <div class="field field-wide"><label for="appointment-notes">Como podemos ajudar?</label><textarea id="appointment-notes" name="notes" placeholder="Conte brevemente o que seu pet precisa."></textarea></div>
+          <div class="field-wide"><button class="button button-primary" type="submit">Enviar pedido de exemplo</button><p class="status-message" id="appointment-status" aria-live="polite"></p></div>
+        </form>
+      </div>
+    </section>
+
+    <section class="view" id="view-emergencia" aria-labelledby="emergency-title" hidden>
+      <div class="page-intro compact-intro">
+        <div><p class="eyebrow">Acesso sem login</p><h1 id="emergency-title">Acesso de emergência</h1><p>Informe o nome do pet e o que está acontecendo.</p></div>
+      </div>
+      <div class="content-panel">
+        <form class="form-grid" id="emergency-form">
+          <div class="field"><label for="emergency-pet-name">Nome do pet</label><input id="emergency-pet-name" name="pet" required maxlength="80" autocomplete="off" placeholder="Ex.: Mel"></div>
+          <div class="field field-wide"><label for="emergency-problem">Qual é o problema do pet?</label><textarea id="emergency-problem" name="problem" required maxlength="1000" placeholder="Descreva brevemente o que aconteceu ou os sintomas observados."></textarea></div>
+          <div class="field-wide"><button class="button button-primary" type="submit">Enviar pedido de emergência</button><p class="status-message" id="emergency-status" aria-live="polite"></p></div>
+        </form>
+      </div>
+      <p class="page-note"><a href="/painel-emergencia">Acesso ao painel da clínica</a></p>
+    </section>
+
+    <section class="view" id="view-planos" aria-labelledby="plans-title" hidden>
+      <div class="page-intro compact-intro"><div><p class="eyebrow">Cuidado sob medida</p><h1 id="plans-title">Planos para cada rotina</h1><p>Conheça opções demonstrativas para acompanhar seu pet.</p></div></div>
+      <div class="plans-grid">
+        <article class="plan-card"><h2>Casual</h2><p class="plan-description">O essencial para começar.</p><p class="plan-price">Grátis</p><p class="plan-period">sem mensalidade</p><ul><li>Busca de clínicas e especialidades</li><li>Acesso ao mapa de exemplos</li><li>Consulta às avaliações</li></ul><button class="button button-outline plan-select" type="button" data-plan="Casual" aria-pressed="false">Selecionar</button></article>
+        <article class="plan-card"><h2>Essencial</h2><p class="plan-description">Mais organização para a rotina.</p><p class="plan-price">R$ 14,90</p><p class="plan-period">por mês</p><ul><li>Tudo do plano Casual</li><li>Perfil para até 2 pets</li><li>Favoritos e lembretes</li></ul><button class="button button-outline plan-select" type="button" data-plan="Essencial" aria-pressed="false">Selecionar</button></article>
+        <article class="plan-card plan-featured"><span class="plan-ribbon">MAIS ESCOLHIDO</span><h2>Intermediário</h2><p class="plan-description">Acompanhamento completo no dia a dia.</p><p class="plan-price">R$ 29,90</p><p class="plan-period">por mês</p><ul><li>Tudo do plano Essencial</li><li>Perfil para até 4 pets</li><li>Histórico de cuidados</li></ul><button class="button button-primary plan-select" type="button" data-plan="Intermediário" aria-pressed="false">Selecionar</button></article>
+        <article class="plan-card"><h2>Pro</h2><p class="plan-description">Mais praticidade para toda a família.</p><p class="plan-price">R$ 49,90</p><p class="plan-period">por mês</p><ul><li>Tudo do plano Intermediário</li><li>Perfis ilimitados para pets</li><li>Compartilhamento familiar</li></ul><button class="button button-outline plan-select" type="button" data-plan="Pro" aria-pressed="false">Selecionar</button></article>
+      </div>
+      <section class="checkout-panel" id="checkout-panel" aria-labelledby="checkout-title" hidden>
+        <h2 id="checkout-title">Finalizar assinatura</h2>
+        <p id="checkout-plan-summary"></p>
+        <form id="checkout-form">
+          <fieldset class="payment-options">
+            <legend>Como deseja pagar?</legend>
+            <label class="payment-option">
+              <input type="radio" name="payment-type" value="subscription" checked>
+              <span><strong>Assinatura mensal</strong><small>Renovação automática a cada mês, pelo meio de pagamento disponível no Mercado Pago.</small></span>
+            </label>
+            <label class="payment-option">
+              <input type="radio" name="payment-type" value="one-time">
+              <span><strong>Pagar um mês</strong><small>Pagamento avulso. Pix, cartão ou boleto conforme opções disponíveis no Mercado Pago.</small></span>
+            </label>
+          </fieldset>
+          <div class="checkout-actions">
+            <button class="button button-primary" id="checkout-submit" type="submit">Continuar no Mercado Pago</button>
+            <button class="button button-outline" id="checkout-cancel" type="button">Voltar aos planos</button>
+          </div>
+          <p class="status-message" id="checkout-status" aria-live="polite"></p>
+        </form>
+      </section>
+      <p class="status-message" id="plan-status" aria-live="polite"></p>
+      <p class="page-note">O pagamento é processado no ambiente seguro do Mercado Pago. Pix e boleto são avulsos; a renovação automática depende do meio de pagamento e das opções disponíveis no checkout. O checkout exige conta de tutor, cujo login não está disponível nesta versão. Os recursos premium ainda não são ativados automaticamente após o pagamento.</p>
+    </section>
+
+    <section class="view" id="view-avaliacoes" aria-labelledby="reviews-title" hidden>
+      <div class="page-intro compact-intro"><div><p class="eyebrow">Experiências compartilhadas</p><h1 id="reviews-title">Avaliações</h1><p>Veja exemplos de avaliações e simule o envio de uma opinião.</p></div></div>
+      <div class="review-list" id="review-list"></div>
+      <div class="content-panel review-form-panel">
+        <h2>Conte como foi</h2>
+        <form class="form-grid" id="review-form">
+          <div class="field"><label for="review-clinic">Clínica</label><input id="review-clinic" required placeholder="Nome da clínica"></div>
+          <div class="field"><label for="review-rating">Nota</label><select id="review-rating" required><option value="">Selecione</option><option value="5">5 - Muito bom</option><option value="4">4 - Bom</option><option value="3">3 - Regular</option><option value="2">2 - Ruim</option><option value="1">1 - Muito ruim</option></select></div>
+          <div class="field field-wide"><label for="review-comment">Comentário</label><textarea id="review-comment" required placeholder="Compartilhe sua experiência com respeito."></textarea></div>
+          <div class="field-wide"><button class="button button-primary" type="submit">Adicionar avaliação de exemplo</button><p class="status-message" id="review-status" aria-live="polite"></p></div>
+        </form>
+      </div>
+      <p class="page-note">Avaliações nesta demonstração são fictícias e não representam recomendações reais.</p>
+    </section>
+
+    <section class="view" id="view-suporte" aria-labelledby="support-title" hidden>
+      <div class="page-intro compact-intro"><div><p class="eyebrow">Estamos por aqui</p><h1 id="support-title">Suporte</h1><p>Confira dúvidas comuns ou simule o envio de uma mensagem.</p></div></div>
+      <div class="faq-list">
+        <article class="faq-item"><h2>Os locais do mapa são reais?</h2><p>O Google Maps mostra resultados da busca na região informada. A lista de Curitiba usa dados publicados no OpenStreetMap; confirme endereço e atendimento diretamente com cada clínica. As avaliações e demais demonstrações não são recomendações reais.</p></article>
+        <article class="faq-item"><h2>Como encontrar uma especialidade?</h2><p>Use a busca na aba Encontrar ou escolha uma área na aba Especialidades.</p></article>
+        <article class="faq-item"><h2>O pedido de atendimento é enviado?</h2><p>Não. Os formulários desta versão mostram apenas uma confirmação de demonstração.</p></article>
+        <article class="faq-item"><h2>Preciso de atendimento urgente?</h2><p>Procure um hospital veterinário ou serviço de emergência da sua região. Este site não presta atendimento clínico.</p></article>
+      </div>
+      <div class="content-panel">
+        <form class="form-grid" id="support-form">
+          <div class="field"><label for="support-name">Seu nome</label><input id="support-name" required placeholder="Nome"></div>
+          <div class="field"><label for="support-email">E-mail</label><input id="support-email" type="email" required placeholder="voce@exemplo.com"></div>
+          <div class="field field-wide"><label for="support-message">Mensagem</label><textarea id="support-message" required placeholder="Como podemos ajudar?"></textarea></div>
+          <div class="field-wide"><button class="button button-primary" type="submit">Enviar mensagem de exemplo</button><p class="status-message" id="support-status" aria-live="polite"></p></div>
+        </form>
+      </div>
+    </section>
+
+    <section class="view" id="view-veterinario" aria-labelledby="vet-title" hidden>
+      <div class="page-intro compact-intro"><div><p class="eyebrow">Área profissional</p><h1 id="vet-title">Acesso do veterinário</h1><p>Entre com os dados do consultório ou crie um perfil profissional.</p></div></div>
+      <div class="vet-access" id="vet-access">
+        <section class="content-panel vet-access-panel">
+          <div class="vet-mode-switch" role="group" aria-label="Acesso profissional">
+            <button class="vet-mode active" type="button" data-vet-mode="login" aria-pressed="true">Entrar</button>
+            <button class="vet-mode" type="button" data-vet-mode="register" aria-pressed="false">Cadastrar consultório</button>
+          </div>
+          <form id="vet-auth-form" class="form-grid">
+            <div class="field vet-register-field" hidden><label for="vet-name">Nome do veterinário</label><input id="vet-name" autocomplete="name" placeholder="Nome completo"></div>
+            <div class="field"><label for="vet-clinic">Nome do consultório</label><input id="vet-clinic" autocomplete="organization" required placeholder="Ex.: Consultório Vet Central"></div>
+            <div class="field"><label for="vet-email">E-mail</label><input id="vet-email" type="email" autocomplete="email" required placeholder="voce@exemplo.com"></div>
+            <div class="field vet-register-field" hidden><label for="vet-specialty">Tipo de veterinário</label><select id="vet-specialty"></select></div>
+            <div class="field vet-register-field" hidden><label for="vet-cpf">CPF</label><input id="vet-cpf" inputmode="numeric" placeholder="000.000.000-00"></div>
+            <div class="field vet-register-field" hidden><label for="vet-crmv">CRMV</label><input id="vet-crmv" placeholder="Ex.: PE-12345"></div>
+            <div class="field vet-register-field" hidden><label for="vet-image-url">Imagem do consultório ou profissional</label><input id="vet-image-url" type="url" placeholder="https://exemplo.com/foto.jpg"></div>
+            <div class="field"><label for="vet-password">Senha</label><input id="vet-password" type="password" autocomplete="current-password" minlength="6" required placeholder="Mínimo de 6 caracteres"></div>
+            <div class="field-wide"><button class="button button-primary" id="vet-submit" type="submit">Entrar</button><p class="status-message" id="vet-auth-status" aria-live="polite"></p></div>
+          </form>
+          <p class="dialog-note">Após o cadastro, o perfil permanece pendente até a confirmação do e-mail enviado com os dados do veterinário e do consultório.</p>
+        </section>
+      </div>
+      <section class="vet-dashboard" id="vet-dashboard" hidden aria-live="polite">
+        <div class="vet-card">
+          <img id="vet-profile-image" class="vet-profile-image" src="" alt="Imagem do veterinário ou consultório" />
+          <div class="vet-profile-info">
+            <div class="vet-profile-heading">
+              <div>
+                <p class="eyebrow">Perfil profissional</p>
+                <h2 id="vet-profile-name"></h2>
+                <p id="vet-profile-clinic"></p>
+              </div>
+              <span class="vet-status" id="vet-status"></span>
+            </div>
+            <div class="vet-profile-details">
+              <div><span>Tipo de veterinário</span><strong id="vet-profile-specialty"></strong></div>
+              <div><span>Status</span><strong id="vet-profile-status-text"></strong></div>
+              <div><span>CPF</span><strong id="vet-profile-cpf"></strong></div>
+              <div><span>CRMV</span><strong id="vet-profile-crmv"></strong></div>
+              <div><span>E-mail</span><strong id="vet-profile-email"></strong></div>
+              <div><span>Consultório</span><strong id="vet-profile-consultorio"></strong></div>
+            </div>
+          </div>
+        </div>
+        <div class="vet-agenda" aria-live="polite">
+          <div class="vet-agenda-header">
+            <div>
+              <p class="eyebrow">Agenda</p>
+              <h3>Clientes agendados</h3>
+            </div>
+            <button class="button button-primary" id="vet-booking-toggle" type="button">Agendar cliente</button>
+          </div>
+          <form class="vet-booking-form" id="vet-booking-form" hidden>
+            <div class="field"><label for="vet-booking-client">Nome do cliente</label><input id="vet-booking-client" required placeholder="Ex.: Ana Costa"></div>
+            <div class="field"><label for="vet-booking-pet">Nome do pet</label><input id="vet-booking-pet" required placeholder="Ex.: Mel"></div>
+            <div class="field"><label for="vet-booking-service">Serviço</label><input id="vet-booking-service" required placeholder="Ex.: Consulta de rotina"></div>
+            <div class="field"><label for="vet-booking-date">Data</label><input id="vet-booking-date" type="date" required></div>
+            <div class="field"><label for="vet-booking-time">Horário</label><input id="vet-booking-time" type="time" required></div>
+            <div class="field"><label for="vet-booking-status">Status</label><select id="vet-booking-status"><option>Confirmado</option><option>Em espera</option><option>Pendente</option></select></div>
+            <div class="field-wide"><button class="button button-primary" type="submit">Salvar agendamento</button><p class="status-message" id="vet-booking-status-message" aria-live="polite"></p></div>
+          </form>
+          <div class="vet-agenda-summary">
+            <span class="vet-agenda-total" id="vet-agenda-total">0 clientes</span>
+          </div>
+          <div class="vet-agenda-list" id="vet-agenda-list"></div>
+        </div>
+        <div class="vet-dashboard-actions">
+          <button class="button button-outline" id="vet-status-toggle" type="button"></button>
+          <button class="button button-outline" id="vet-logout" type="button">Sair</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">BuscaVet · Protótipo ilustrativo para demonstração</footer>
+
+  <div class="modal-backdrop" id="tutor-registration-modal" hidden>
+    <section class="auth-dialog" role="dialog" aria-modal="true" aria-labelledby="tutor-registration-title">
+      <button class="modal-close" id="tutor-registration-close" type="button" aria-label="Fechar">×</button>
+      <p class="eyebrow">Cadastro sem conta</p>
+      <h2 id="tutor-registration-title">Dados do tutor e do pet</h2>
+      <p class="dialog-copy">Preencha os dados para a clínica consultar seu pedido. Não é necessário criar login.</p>
+      <form id="tutor-registration-form">
+        <div class="field"><label for="tutor-name">Nome do tutor</label><input id="tutor-name" autocomplete="name" maxlength="80" required placeholder="Nome completo"></div>
+        <div class="field"><label for="tutor-pet-name">Nome do pet</label><input id="tutor-pet-name" maxlength="80" placeholder="Ex.: Mel (opcional)"></div>
+        <div class="field"><label for="tutor-whatsapp">Número do WhatsApp</label><input id="tutor-whatsapp" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" required placeholder="Ex.: (41) 99999-9999"></div>
+        <div class="field"><label for="tutor-neighborhood">Bairro</label><input id="tutor-neighborhood" autocomplete="address-level3" maxlength="100" required placeholder="Seu bairro"></div>
+        <div class="field"><label for="tutor-pet-situation">O que está acontecendo com o pet?</label><textarea id="tutor-pet-situation" maxlength="1000" required placeholder="Descreva em poucas palavras o que está acontecendo."></textarea></div>
+        <button class="button button-primary button-full" id="tutor-registration-submit" type="submit">Enviar cadastro</button>
+        <p class="status-message" id="tutor-registration-status" aria-live="polite"></p>
+      </form>
+    </section>
+  </div>
+</body>
+</html>
