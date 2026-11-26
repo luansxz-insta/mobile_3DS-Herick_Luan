@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4eee4">
+  <meta name="robots" content="noindex, nofollow">
+  <title>BuscaVet | Painel de emergências</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/emergency-panel.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="BuscaVet, início">
+      <span class="brand-copy"><span class="brand-name">Busca<span>Vet</span></span><span class="brand-tagline">Painel da clínica</span></span>
+    </a>
+    <a class="button button-outline" href="/">Voltar ao site</a>
+  </header>
+  <main>
+    <div class="page-intro compact-intro">
+      <div>
+        <p class="eyebrow">Área restrita</p>
+        <h1>Pedidos e cadastros</h1>
+        <p>Consulte os pedidos e os dados de tutor enviados pelo site.</p>
+      </div>
+    </div>
+    <section class="content-panel emergency-panel-login" id="panel-login-section">
+      <form class="form-grid" id="panel-login">
+        <div class="field field-wide">
+          <label for="panel-password">Senha do painel</label>
+          <input id="panel-password" name="password" type="password" autocomplete="current-password" maxlength="256" required>
+        </div>
+        <div class="field-wide">
+          <button class="button button-primary" type="submit">Acessar painel</button>
+          <p class="status-message" id="panel-login-status" aria-live="polite"></p>
+        </div>
+      </form>
+    </section>
+    <section id="panel-content" hidden aria-live="polite">
+      <div class="emergency-panel-toolbar">
+        <p class="status-message" id="panel-status" role="status"></p>
+        <div>
+          <button class="button button-outline" id="panel-refresh" type="button">Atualizar pedidos</button>
+          <button class="button button-outline" id="panel-logout" type="button">Sair</button>
+        </div>
+      </div>
+      <div class="emergency-request-list" id="emergency-request-list"></div>
+    </section>
+  </main>
+  <footer class="site-footer">Os pedidos são armazenados localmente no servidor.</footer>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4eee4">
+  <meta name="robots" content="noindex, nofollow">
+  <title>BuscaVet | Pagamento Pix</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/pix.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="BuscaVet, início">
+      <img class="brand-logo" src="/imagens/Logo%20BuscaVet%20com%20C%C3%A3o%20e%20Gato.png" alt="Logo BuscaVet">
+      <span class="brand-copy"><span class="brand-name">Busca<span>Vet</span></span><span class="brand-tagline">Pagamento SOS</span></span>
+    </a>
+    <a class="button button-outline" href="/">Voltar ao site</a>
+  </header>
+  <main>
+    <section class="pix-page" aria-labelledby="pix-title">
+      <p class="eyebrow">Pagamento seguro</p>
+      <h1 id="pix-title">Pix do atendimento SOS</h1>
+      <p class="pix-description">O pagamento de <strong>R$ 10,00</strong> será concluído no checkout seguro do Mercado Pago. O BuscaVet não coleta dados de pagamento.</p>
+      <p class="status-message" id="pix-status" role="status" aria-live="polite">Preparando seu Pix...</p>
+      <button class="button button-primary pix-retry" id="pix-retry" type="button" hidden>Tentar novamente</button>
+      <p class="pix-note">A cobrança depende das credenciais Mercado Pago configuradas pelo administrador. Confira a confirmação do pagamento diretamente na conta Mercado Pago.</p>
+    </section>
+  </main>
+  <footer class="site-footer">BuscaVet · Pagamento processado pelo Mercado Pago</footer>
+</body>
+</html>
